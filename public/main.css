@@ -1,0 +1,47 @@
+*{
+	margin:0;
+	padding:0;
+	text-align: center;
+}
+.vflex{
+	display:flex;
+	flex-direction:column ;
+
+}
+.hflex{
+	display: flex;
+	flex-direction:row;
+}
+
+footer{
+	position: fixed;
+	bottom: 0px;
+	background-image: linear-gradient(white,skyblue);
+}
+header{
+	background-image: linear-gradient(skyblue,white);
+}
+section{
+	background-image: linear-gradient(white,white);
+	margin:auto;
+	display:inline-block;
+}
+
+.screenwidth{
+	width:100vw;
+}
+.screenheigth{
+	height:100vh;
+}
+.divconfig{
+	width:10vw;
+	height:5vh;
+	margin:5px;
+	padding:5px;
+
+}
+button{
+	margin:10px;
+	padding:5px;
+	font-size: 200%;
+}

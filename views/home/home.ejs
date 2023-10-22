@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title><%= title %></title>
+	<link rel="stylesheet" href="/public/main.css">
+</head>
+<body>
+	<%- include('../partials/header') %>
+	<section>
+		
+		<div style="background-color: skyblue;font-size: 50rer; color:black;padding:5px;border:solid black 1px;margin:5px;" onclick="funadmin()">Admin</div>
+		<div id="admin" >
+		<form action="/admin" method="get" accept-charset="utf-8">
+			<table>
+				<tr>
+					<td>Poll Id :- </td>
+					<td><input type="text" name="id" value="" placeholder="Poll Id"></td>
+				</tr>
+				<tr>
+					<td>User Name :- </td>
+					<td><input type="text" name="username" value="" placeholder="User Name"></td>
+				</tr>
+				<tr>
+					<td>Pass Key :- </td>
+					<td><input type="text" name="passkey" value="" placeholder="Pass Key"></td>
+				</tr>
+				<tr>
+					<td><input type="submit" name="" value="Submit"></td>
+					<td><input type="reset" name="Reset" value="Reset"></td>
+				</tr>
+			</table>	
+		</form>
+	</div>
+	
+		<div style="background-color: skyblue;font-size: 50rer; color:black;padding:5px;border:solid black 1px;margin:5px;" onclick="funclient()">Client</div>
+		<div id="client" >	
+				<form action="/client" method="get" accept-charset="utf-8">
+			<table>
+				<tr>
+					<td>Poll Id :- </td>
+					<td><input type="text" name="id" value="" placeholder="Poll Id"></td>
+				</tr>
+				<tr>
+					<td>User Name :- </td>
+					<td><input type="text" name="username" value="" placeholder="User Name"></td>
+				</tr>
+				<tr>
+					<td>Pass Key :- </td>
+					<td><input type="text" name="passkey" value="" placeholder="Pass Key"></td>
+				</tr>
+				<tr>
+					<td><input type="submit" name="Submit" value="Submit"></td>
+					<td><input type="reset" name="Reset" value="Reset"></td>
+				</tr>
+			</table>	
+		</form>
+	</div>
+	</section>
+	<%- include('../partials/footer') %>
+	<script>
+		const admin=document.getElementById("admin");
+		const client=document.getElementById("client")
+		function funclient(){
+			admin.style.display="none"
+			client.style.display="block"
+			
+		}
+		function funadmin(){
+			admin.style.display="block"
+			client.style.display="none"
+			
+		}
+		funclient();
+	</script>
+</body>
+</html>

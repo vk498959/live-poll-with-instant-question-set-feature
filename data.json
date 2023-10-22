@@ -1,0 +1,16 @@
+[
+	{
+		"poll_id":"1",
+		"client_id":"client",
+		"client_passkey":"passkey",
+		"admin":"admin",
+		"admin_passkey":"passkey"
+	},
+	{
+		"poll_id":"2",
+		"client_id":"client2",
+		"client_passkey":"passkey2",
+		"admin":"admin2",
+		"admin_passkey":"passkey2"
+	}
+]
