@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title><%= title %></title>
+	<title>
+		<%= title %>
+	</title>
 	<link rel="stylesheet" href="/public/main.css">
 </head>
+
 <body>
 	<%- include('../partials/header') %>
-	<section>
-		<div style="color:red;font-size:5rem">
-		    Poll Error!! Admin is not started the poll yet
-		</div>
-		<div>
-		    <a href="/" style="color:blue;font-size:3rem;">Click here to go to home page and try again</a>
-		</div>
-	</section>
-	<%- include('../partials/footer') %>
+		<section>
+			<div style="color:red;font-size:5rem">
+				Poll Error!! Admin is not started the poll yet
+			</div>
+			<div>
+				<a href="/" style="color:blue;font-size:3rem;">Click here to go to home page and try again</a>
+			</div>
+		</section>
+		<%- include('../partials/footer') %>
 </body>
+
 </html>

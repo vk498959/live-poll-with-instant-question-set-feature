@@ -1,142 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title><%= title %></title>
+	<title>
+		<%= title %>
+	</title>
 	<link rel="stylesheet" href="/public/main.css">
 	<style>
-		#pollmaker{
-			display:flex;
+		#pollmaker {
+			display: flex;
 			flex-direction: column;
 		}
-		
-		.question{
-			font-weight:900;
-			font-size:400% ;
-			border:solid 5px red;
+
+		.question {
+			font-weight: 900;
+			font-size: 400%;
+			border: solid 5px red;
 
 		}
-		.option{
+
+		.option {
 
 			font-weight: 900;
-			font-size:200%;
-			border:solid 1px grey;
-			display:inline-block;
-			margin:10px;
-			padding:5px;
+			font-size: 200%;
+			border: solid 1px grey;
+			display: inline-block;
+			margin: 10px;
+			padding: 5px;
 		}
-		#clientscreen{
-			display:flex;
+
+		#clientscreen {
+			display: flex;
 			flex-direction: column;
-			border:solid blue 5px;
-			margin:10px;
-			padding:10px;
+			border: solid blue 5px;
+			margin: 10px;
+			padding: 10px;
 		}
-		#result{
-			display:flex;
+
+		#result {
+			display: flex;
 			flex-direction: column;
-			border:solid green 3px;
+			border: solid green 3px;
 		}
 	</style>
 </head>
+
 <body>
 	<%- include('../partials/header') %>
-	<section>
-		<div id="pollmaker">
-		
-	</div>
-	<div>
-		<button onclick="txtbox()">Add Question</button>
-		<button onclick="radiobtn()">Add Option for poll</button>
-		<button onclick="commentbtn()">Add Comment Button</button>
+		<section>
+			<div id="pollmaker">
+
+			</div>
+			<div>
+				<button onclick="txtbox()">Add Question</button>
+				<button onclick="radiobtn()">Add Option for poll</button>
+				<button onclick="commentbtn()">Add Comment Button</button>
 
 
-	</div>
-	<div>
-		<button onclick="send()">send</button>
-		<button onclick="clearr()">Clear</button>
-		<button onclick="waitt()">Send Wait ......</button>
+			</div>
+			<div>
+				<button onclick="send()">send</button>
+				<button onclick="clearr()">Clear</button>
+				<button onclick="waitt()">Send Wait ......</button>
 
-	</div>
-	<h1>Client Screen identical looks inside the Blue box</h1>
-	<div id="clientscreen">
-	</div>
-	<h1>Result</h1>
-	<div id="result">
-	</div>
-	</section>
-	<%- include('../partials/footer') %>
-	<script>
-		
-		var ws=new WebSocket("ws://localhost:8080")
-		var comment;
-		var question;
-		var option;	
-		var finalsend;
-		const resultdiv=document.getElementById("result");
-		const clientscreen=document.getElementById("clientscreen");
-		const pollmaker=document.getElementById("pollmaker");
-		function send(){
-		finalsend=document.getElementById("pollmaker").innerHTML;
-			clientscreen.innerHTML=finalsend;
+			</div>
+			<h1>Client Screen identical looks inside the Blue box</h1>
+			<div id="clientscreen">
+			</div>
+			<h1>Result</h1>
+			<div id="result">
+			</div>
+		</section>
+		<%- include('../partials/footer') %>
+			<script>
 
-			ws.send(finalsend)
-		}
-		function waitt(){
-			clientscreen.innerHTML="Wait for the poll.............."
-			ws.send("Wait for poll..............")
-		}
-		function clearr(){
-			pollmaker.removeChild(pollmaker.firstChild)
-			
-		}
+				var ws = new WebSocket("ws://localhost:8080")
+				var comment;
+				var question;
+				var option;
+				var finalsend;
+				const resultdiv = document.getElementById("result");
+				const clientscreen = document.getElementById("clientscreen");
+				const pollmaker = document.getElementById("pollmaker");
+				function send() {
+					finalsend = document.getElementById("pollmaker").innerHTML;
+					clientscreen.innerHTML = finalsend;
 
-		
-		function txtbox(){
+					ws.send(finalsend)
+				}
+				function waitt() {
+					clientscreen.innerHTML = "Wait for the poll.............."
+					ws.send("Wait for poll..............")
+				}
+				function clearr() {
+					pollmaker.removeChild(pollmaker.firstChild)
 
-			q=prompt("enter the question in the box")
-			question=document.createElement("div")
-			question.setAttribute("class", "question")
-			question.innerHTML=q;
-			pollmaker.appendChild(question)
-
-		}
-		function commentbtn(){
-			
-			comment=document.createElement("textarea")
-			comment.setAttribute("class", "comment")
-			
-			pollmaker.appendChild(comment)
-
-		}
-		function radiobtn(){
-			q=prompt("enter the option for the poll")
-			option=document.createElement("div")
-			option.setAttribute("class", "option")
-			option.setAttribute("onclick", "choice(this)")
-			option.innerText=q;
-			pollmaker.appendChild(option)
-
-		}
-		async function resultt(){
-			var buffer=await fetch("/fetch")
-			var arr=await buffer.json();
+				}
 
 
-			var map = arr.reduce(function (prev,cur){
-				prev[cur]=(prev[cur] || 0)+1;
-				return prev;
-			},{})
+				function txtbox() {
 
-			var jsond="";
-			for(var key in map){
-				jsond+=`<div><p style="font-size:500%" >${key} =>${map[key]} votes </p></div>`;
-				// console.log(key);
-				// console.log(jsondata[key])
-			}
-			resultdiv.innerHTML=jsond;
-		}
-	</script>
+					q = prompt("enter the question in the box")
+					question = document.createElement("div")
+					question.setAttribute("class", "question")
+					question.innerHTML = q;
+					pollmaker.appendChild(question)
+
+				}
+				function commentbtn() {
+
+					comment = document.createElement("textarea")
+					comment.setAttribute("class", "comment")
+
+					pollmaker.appendChild(comment)
+
+				}
+				function radiobtn() {
+					q = prompt("enter the option for the poll")
+					option = document.createElement("div")
+					option.setAttribute("class", "option")
+					option.setAttribute("onclick", "choice(this)")
+					option.innerText = q;
+					pollmaker.appendChild(option)
+
+				}
+				async function resultt() {
+					var buffer = await fetch("/fetch")
+					var arr = await buffer.json();
+
+
+					var map = arr.reduce(function (prev, cur) {
+						prev[cur] = (prev[cur] || 0) + 1;
+						return prev;
+					}, {})
+
+					var jsond = "";
+					for (var key in map) {
+						jsond += `<div><p style="font-size:500%" >${key} =>${map[key]} votes </p></div>`;
+						// console.log(key);
+						// console.log(jsondata[key])
+					}
+					resultdiv.innerHTML = jsond;
+				}
+			</script>
 </body>
+
 </html>

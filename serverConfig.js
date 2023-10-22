@@ -1,5 +1,5 @@
-var port=8000;
+var port = 8000;
 
-var message =`server is running on port ${port}`
+var message = `server is running on port ${port}`
 
-module.exports={port,message}
+module.exports = { port, message }
